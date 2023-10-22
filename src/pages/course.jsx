@@ -3,6 +3,41 @@ import logo from '../assets/usm_name.png';
 import '../css/course.css'
 import { useState } from 'react'
 
+const createTable = (content) => {
+	const table = [];
+
+	let currentType = null;
+
+	content.forEach((row, i) => {
+		const type = row[0];
+
+		if (type !== currentType) {
+			currentType = type;
+			if (type !== '') {
+				table.push(
+					<tr key={i} className="type-header">
+						<td colSpan={4}>
+							<strong>{type}</strong>
+						</td>
+					</tr>
+				);
+			}
+		}
+
+		table.push(
+			<tr key={i}>
+				{row.slice(1).map((cell, j) => (
+					<td key={j}>
+						{cell}
+					</td>
+				))}
+			</tr>
+		);
+	});
+
+	return table;
+};
+
 export const CoursePage = () => {
     const [selected, setSelected] = useState(null)
     const toggle = (i) => {
@@ -14,7 +49,7 @@ export const CoursePage = () => {
   return (
     <div>
       <a href="/">
-        <img src={logo} alt="Logo de la Universidad Santa María" />
+        <img src={logo} alt="Logo de la Universidad" />
       </a>
       <div className='accordion'>
         {data.map((item, i) => (
@@ -26,15 +61,28 @@ export const CoursePage = () => {
                     <span>{selected === i ? '-' : '+'}</span>
                 </div>
                 <div className={selected === i ? 'content show' : 'content'}>
-                    {item.content.map((line, j) => (
-                        <p key={j}>
-                            {item.links && item.links[j] ? (
-                                <a href={item.links[j]}>{line}</a>
-                            ) : (
-                                line.trim()
-                            )}
-                        </p>
-                    ))}
+					{item.title === 'Calificaciones y Fechas' ? (
+						<table>
+							<thead>
+								<tr>
+									{item.content.slice(0,4).map((header, j) => (
+										<th key = {j}>
+											{header}
+										</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+								{createTable(item.content.slice(4))}
+							</tbody>
+						</table>
+					) : (
+						item.content.map((line, j) => (
+							<p key={j}>
+								{line}
+							</p>
+						))
+					)}
                 </div>
             </div>
         ))}
@@ -69,12 +117,15 @@ const data = [
             'consultas_201',
         ],
     },
-    {
-        title: 'Calificaciones y Fechas',
-        content: [
-            'Evaluaciones, Calificación, Fecha, Retroalimentación',
-        ]
-    }
+	{
+		title: 'Calificaciones y Fechas',
+		content: [
+			'Evaluaciones', 'Calificación', 'Fecha', 'Retroalimentación',
+			['Certámenes', 'C1', 49, '29-09-2023 15:50', '(...)'],
+			['Certámenes', 'C2', '-', '24-11-2023 15:50', '(...)'],
+			['Proyecto', 'Informe 1', 40, '21-10-2023 15:50', '(...)'],
+		],
+	},
 ]
 
 export default CoursePage;
