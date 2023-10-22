@@ -22,55 +22,61 @@ export const CoursePage = () => {
                 </label>
             </nav>
 			{/* Cuadro con el nombre */}
-			<div class="info_square">
+			<div class="square">
 				<div class="name">
 					<h1>
 						(202302)(INF322) DISEÑO DE INTERFACES USUARIAS|Paralelos:200/201
 					</h1>
 				</div>
 			</div>
-            <div className="accordion">
-                {data.map((item, i) => (
-                    <div className="item">
-                        <div className="title" onClick={() => toggle(i)}>
-                            <h2>{item.title}</h2>
-                            <span>{selected === i ? "-" : "+"}</span>
-                        </div>
-                        <div
-                            className={
-                                selected === i ? "content show" : "content"
-                            }
-                        >
-                            {item.title === "Calificaciones y Fechas" ? (
-                                <table className="left-aligned-table">
-                                    <thead>
-                                        <tr>
-                                            {item.content
-                                                .slice(0, 4)
-                                                .map((header, j) => (
-                                                    <th key={j}>{header}</th>
-                                                ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {createTable(item.content.slice(4))}
-                                    </tbody>
-                                </table>
-                            ) : (
-                                item.content.map((line, j) => (
-                                    <p key={j}>
-                                        {item.links && item.links[j] ? (
-                                            <a href={item.links[j]}>{line}</a>
-                                        ) : (
-                                            line.trim()
-                                        )}
-                                    </p>
-                                ))
-                            )}
-                        </div>
-                    </div>
-                ))}
-            </div>
+			<div class="square">
+				<div class="navbar">
+					<a href="#" class="nav-item active">Información General</a>
+					<a href="#" class="nav-item">Información Adicional</a>
+				</div>
+				<div className="accordion">
+					{data.map((item, i) => (
+						<div className="item">
+							<div className="title" onClick={() => toggle(i)}>
+								<h2>{item.title}</h2>
+								<span>{selected === i ? "-" : "+"}</span>
+							</div>
+							<div
+								className={
+									selected === i ? "content show" : "content"
+								}
+							>
+								{item.title === "Calificaciones y Fechas" ? (
+									<table className="left-aligned-table">
+										<thead>
+											<tr>
+												{item.content
+													.slice(0, 4)
+													.map((header, j) => (
+														<th key={j}>{header}</th>
+													))}
+											</tr>
+										</thead>
+										<tbody>
+											{createTable(item.content.slice(4))}
+										</tbody>
+									</table>
+								) : (
+									item.content.map((line, j) => (
+										<p key={j}>
+											{item.links && item.links[j] ? (
+												<a href={item.links[j]}>{line}</a>
+											) : (
+												line.trim()
+											)}
+										</p>
+									))
+								)}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
         </div>
     );
 };
@@ -146,8 +152,23 @@ const data = [
             },
             {
                 type: "Proyecto",
-                evaluations: [["Informe 1", 40, "21-10-2023 15:50", "(...)"]],
+                evaluations: [
+					["Informe 1", 40, "15-09-2023 15:50", "(...)"]
+
+				],
             },
+			{
+				type: "Tareas",
+				evaluations: [
+					["T1: Facilidad de Uso", 85, "", "(...)"],
+					["T2: Personas", 85, "", "(...)"],
+					["T4: Metas, Funciones e Hipotesis", 38, "", "(...)"],
+					["T5: Pautas Web y Test con usuarios", 88, "", "(...)"],
+					["T6: Test de prototipo (P201)", 80, "08-09-2023 23:59", "(...)"],
+					["T7: Entrega Menú CLC (P201)", 58, "06-10-2023 23:59", "(...)"],
+					["Tarea 8 (P201) - 22 octubre", "-", "22-10-2023 23:59", "(...)"]
+				],
+			},
         ],
     },
 ];
