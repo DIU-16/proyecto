@@ -3,41 +3,6 @@ import logo from '../assets/usm_name.png';
 import '../css/course.css'
 import { useState } from 'react'
 
-const createTable = (content) => {
-	const table = [];
-
-	let currentType = null;
-
-	content.forEach((row, i) => {
-		const type = row[0];
-
-		if (type !== currentType) {
-			currentType = type;
-			if (type !== '') {
-				table.push(
-					<tr key={i} className="type-header">
-						<td colSpan={4}>
-							<strong>{type}</strong>
-						</td>
-					</tr>
-				);
-			}
-		}
-
-		table.push(
-			<tr key={i}>
-				{row.slice(1).map((cell, j) => (
-					<td key={j}>
-						{cell}
-					</td>
-				))}
-			</tr>
-		);
-	});
-
-	return table;
-};
-
 export const CoursePage = () => {
     const [selected, setSelected] = useState(null)
     const toggle = (i) => {
@@ -62,7 +27,7 @@ export const CoursePage = () => {
                 </div>
                 <div className={selected === i ? 'content show' : 'content'}>
 					{item.title === 'Calificaciones y Fechas' ? (
-						<table>
+						<table className="left-aligned-table">
 							<thead>
 								<tr>
 									{item.content.slice(0,4).map((header, j) => (
@@ -90,6 +55,38 @@ export const CoursePage = () => {
     </div>
   );
 };
+
+const createTable = (evaluations) => {
+	const table = [];
+
+	evaluations.forEach((section, j) => {
+		// Agrega solo una fila de encabezado por tipo
+		table.push(
+			<tr key={j} className="type-header">
+				<td colSpan={4}>
+					<strong>{section.type}</strong>
+				</td>
+			</tr>
+		);
+
+		section.evaluations.forEach((evaluation, i) => {
+			const evaluationWithLabel = [...evaluation];
+			
+			table.push(
+				<tr key={i}>
+					{evaluationWithLabel.map((cell, k) => (
+						<td key={k}>
+							{cell}
+						</td>
+					))}
+				</tr>
+			);
+		});
+	});
+
+	return table;
+};
+
 
 const data = [
     {
@@ -121,9 +118,19 @@ const data = [
 		title: 'Calificaciones y Fechas',
 		content: [
 			'Evaluaciones', 'Calificación', 'Fecha', 'Retroalimentación',
-			['Certámenes', 'C1', 49, '29-09-2023 15:50', '(...)'],
-			['Certámenes', 'C2', '-', '24-11-2023 15:50', '(...)'],
-			['Proyecto', 'Informe 1', 40, '21-10-2023 15:50', '(...)'],
+			{
+				type: 'Certámenes',
+				evaluations: [
+					['C1', 49, '29-09-2023 15:50', '(...)'],
+					['C2', '-', '24-11-2023 15:50', '(...)'],
+				],
+			},
+			{
+				type: 'Proyecto',
+				evaluations: [
+					['Informe 1', 40, '21-10-2023 15:50', '(...)'],
+				],
+			},
 		],
 	},
 ]
