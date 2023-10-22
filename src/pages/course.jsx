@@ -27,7 +27,13 @@ export const CoursePage = () => {
                 </div>
                 <div className={selected === i ? 'content show' : 'content'}>
                     {item.content.map((line, j) => (
-                        <p key={j}>{line.trim()}</p>
+                        <p key={j}>
+                            {item.links && item.links[j] ? (
+                                <a href={item.links[j]}>{line}</a>
+                            ) : (
+                                line.trim()
+                            )}
+                        </p>
                     ))}
                 </div>
             </div>
@@ -56,7 +62,12 @@ const data = [
             'Noticias y avisos',
             'Consultas (paralelo 200)',
             'Consultas (paralelo 201)',
-        ]
+        ],
+        links: [ // Links vinculados al content.
+            'NoticiasyAvisos',
+            'consultas_200',
+            'consultas_201',
+        ],
     },
     {
         title: 'Calificaciones y Fechas',
