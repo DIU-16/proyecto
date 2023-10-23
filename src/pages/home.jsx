@@ -3,6 +3,8 @@ import { Container, Typography, Grid, TextField, Box } from '@mui/material';
 import { Card, CardActionArea, CardMedia, CardContent } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
+import Fuse from 'fuse.js'
+
 import NavBar from '../components/nav_bar'
 import Header from '../components/header'
 
@@ -84,16 +86,19 @@ export const HomePage = () => {
         }
         query = query.toLowerCase();
 
+        const fuse = new Fuse(data, { keys: ["name", "sign"], threshold: 0.1});
+        const result = fuse.search(query);
+
         const finalResult = [];
-        data.forEach((item) => {
-            if (
-                item.name.toLowerCase().indexOf(query) !== -1 ||
-                item.sign.includes(query)
-            ) {
-                finalResult.push(item);
-            }
-        });
-        setSearchData(finalResult);
+        if (result.length) {
+            result.forEach((item) => {
+                finalResult.push(item.item);
+            });
+
+            setSearchData(finalResult);
+        } else {
+            setSearchData([]);
+        }
     };
 
     return (
