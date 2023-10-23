@@ -121,7 +121,7 @@ export const HomePage = () => {
                     />
                 </Grid>
 
-                <Grid item xs={12} sx={{ pb: 2, display: 'flex', flexWrap: 'wrap' }}>
+                <Grid item xs={12} sx={{ pb: 2, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
                     { searchData.map((item) => (
                         <Box sx={{ pb: 2, pr: 2, minWidth: 400, maxWidth: 400 }} >
                             <CourseCard
