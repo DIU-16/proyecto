@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import logo from '../assets/usm_name_white.png';
 
-const pages = [['Calendario', '/internal'], ['Cursos', '/course'], ['Foro', '/foro']]; 
+const pages = [['Calendario', '/internal'], ['Cursos', '/course'], ['Foro', '/foro'], ['Chat', '/chat']]; 
 
 const headerStyle = {
     position: 'sticky',
