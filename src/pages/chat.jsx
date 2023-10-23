@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "../css/Chat.css";
 import ChatPersonasPage from './chatPersonas';
 import ChatRamosPage from './chatRamos';
+import Header from '../components/header'
 
 function ChatPage() {
   const [activeTab, setActiveTab] = useState('tab1'); // Pista: Inicialmente seleccionamos la primera función.
@@ -12,6 +13,7 @@ function ChatPage() {
 
   return (
     <div className="navbar">
+      <Header/>
       <button
         className={activeTab === 'tab1' ? 'active' : ''}
         onClick={() => handleTabClick('tab1')}
