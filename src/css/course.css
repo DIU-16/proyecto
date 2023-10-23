@@ -85,6 +85,10 @@ nav{
     color: #455a64;
     background-color: #eef5f9;
     font-weight: bold;
+    pointer-events: none;
+    cursor: not-allowed;
+    border: 1px solid transparent;
+    border-color: #dee2e6 #dee2e6 #eef5f9;
 }
 
 .nav-item:not(.active):hover{

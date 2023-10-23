@@ -4,17 +4,23 @@ import { NavLink } from 'react-router-dom';
 
 import logo from '../assets/usm_name_white.png';
 
-const pages = [['calendario', '/internal'], ['otra cosa', '/course']]; 
+const pages = [['Calendario', '/internal'], ['Cursos', '/course'], ['Foro', '/foro']]; 
+
+const headerStyle = {
+    position: 'sticky',
+    top: 0,
+    width: '100%',
+}
 
 export const Header = () => {
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={headerStyle}>
             <Toolbar>
                 <Grid container justifyContent="space-between" alignItems="center">
                     {/* Sección Izquierda */}
-                    <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <NavLink to="/" style={{ height: 60}}>
-                            <img src={logo} style={{ height: '100%', width: '100%' }}  alt="Logo de la Universidad Santa María" />
+                    <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'center' }} >
+                        <NavLink to="/" style={{ height: 60, background: 'transparent' }} >
+                            <img src={logo} style={{ height: '100%', width: '100%' }} alt="Logo de la Universidad Santa María" />
                         </NavLink>
                     </Grid>
 

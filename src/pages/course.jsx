@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/usm_name.png";
+import Header from '../components/header'
 import "../css/course.css";
 import { useState } from "react";
 
@@ -13,14 +14,15 @@ export const CoursePage = () => {
     };
     return (
         <div class="background">
-            <nav> 
-				{/* TODO: Agregar ícono de persona logeada*/}
+            <Header />
+            {/* <nav> 
+
                 <label for="" class="brand">
                     <a href="/">
                         <img src={logo} alt="Logo de la Universidad" />
                     </a>
                 </label>
-            </nav>
+            </nav> */}
 			{/* Cuadro con el nombre */}
 			<div class="square">
 				<div class="name">
@@ -88,9 +90,9 @@ const createTable = (evaluations) => {
         // Agrega solo una fila de encabezado por tipo
         table.push(
             <tr key={j} className="type-header">
-                <td colSpan={4}>
+                <p colSpan={4}>
                     <strong>{section.type}</strong>
-                </td>
+                </p>
             </tr>
         );
 
