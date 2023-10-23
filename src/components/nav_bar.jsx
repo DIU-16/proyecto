@@ -16,6 +16,24 @@ export const NavBar = () => {
       >
         Página Interna
       </NavLink>
+      <NavLink
+        className={({ isActive }) => `nav-bar__link ${isActive ? 'nav-bar__link--active' : ''}`}
+        to='/course'
+      >
+        Cursos
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => `nav-bar__link ${isActive ? 'nav-bar__link--active' : ''}`}
+        to='/foro'
+      >
+        Foro
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => `nav-bar__link ${isActive ? 'nav-bar__link--active' : ''}`}
+        to='/chat'
+      >
+        chat
+      </NavLink>
     </nav>
   )
 }
