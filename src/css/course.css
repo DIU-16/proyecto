@@ -104,3 +104,12 @@ nav{
     height: 50px;
     border-bottom: 1px solid #dee2e6;
 }
+
+.table {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.table th, .table td{
+    padding: 8px;
+}

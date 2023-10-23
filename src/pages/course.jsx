@@ -34,7 +34,7 @@ export const CoursePage = () => {
 			<div class="square">
 				<div class="navbar">
 					<a href="#" class="nav-item active">Información General</a>
-					<a href="#" class="nav-item">Información Adicional</a>
+					{/* <a href="#" class="nav-item">Información Adicional</a> */}
 				</div>
 				<div className="accordion">
 					{data.map((item, i) => (
@@ -133,9 +133,12 @@ const data = [
         ],
         links: [
             // Links vinculados al content.
-            "NoticiasyAvisos",
-            "consultas_200",
-            "consultas_201",
+            // "NoticiasyAvisos",
+            // "consultas_200",
+            // "consultas_201",
+            "chat",
+            "chat",
+            "chat",
         ],
     },
     {
